@@ -70,4 +70,21 @@ public class Reservations {
 
     }
 
+    public void bestRatedHotel()
+    {
+        if(lakeWoodRating > bridgeWoodRating && lakeWoodRating > ridgeWoodRating)
+        {
+            System.out.println("Best Rated Hotel: LakeWood, Rate: " + sum1);
+        }
+        else if (bridgeWoodRating > lakeWoodRating && bridgeWoodRating > ridgeWoodRating)
+        {
+            System.out.println("Best Rated Hotel: BridgeWood, Rate: " + sum2);
+        }
+        else if (ridgeWoodRating > lakeWoodRating && ridgeWoodRating > bridgeWoodRating)
+        {
+            System.out.println("Best Rated Hotel: RidgeWood, Rate: " + sum3);
+
+        }
+    }
+
 }

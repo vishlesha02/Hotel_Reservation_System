@@ -26,7 +26,7 @@ public class HotelReservationSystem {
 
         System.out.println("Enter the Number to choose best package");
 
-        System.out.println("1) Cheapest Hotel\n2) Cheapest Best Rated Hotel");
+        System.out.println("1) Cheapest Hotel\n2) Cheapest Best Rated Hotel\n3) Best Rated Hotel");
         int reservationList = sc.nextInt();
         switch (reservationList) {
             case 1:
@@ -34,6 +34,9 @@ public class HotelReservationSystem {
                 break;
             case 2:
                 reserve.cheapestBestRatedHotel();
+                break;
+            case 3:
+                reserve.bestRatedHotel();
                 break;
         }
     }
