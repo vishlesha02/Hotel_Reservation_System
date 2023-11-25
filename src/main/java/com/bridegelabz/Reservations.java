@@ -66,8 +66,6 @@ public class Reservations {
          {
              System.out.println("Hotel Name: BridgeWood, Rating: " + bridgeWoodRating + " Rate: " + sum2 + "$");
          }
-
-
     }
 
     public void bestRatedHotel()
