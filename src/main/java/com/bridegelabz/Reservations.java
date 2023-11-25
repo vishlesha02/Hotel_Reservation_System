@@ -5,8 +5,6 @@ import java.time.LocalDate;
 
 public class Reservations {
 
-    public void cheapestHotel() {
-
         LocalDate startDate = LocalDate.parse("2020-09-11");
         LocalDate endDate = LocalDate.parse("2020-09-12");
 
@@ -22,6 +20,11 @@ public class Reservations {
         int sum3 = HotelReservationSystem.hotelList.get(2).calculateRateForRegularCustomer(startDayOfReservation.name()) +
                 HotelReservationSystem.hotelList.get(2).calculateRateForRegularCustomer(endDayOfReservation.name());
 
+        int lakeWoodRating = HotelReservationSystem.hotelList.get(0).ratings;
+        int bridgeWoodRating = HotelReservationSystem.hotelList.get(1).ratings;
+        int ridgeWoodRating = HotelReservationSystem.hotelList.get(2).ratings;
+
+    public void cheapestHotel() {
         if (sum1 < sum2 && sum1 < sum3) {
             System.out.println("Hotel Name: LakeWood, Rate: " + sum1 + "$");
         } else if (sum2 < sum1 && sum2 < sum3) {
@@ -35,10 +38,36 @@ public class Reservations {
         } else {
             System.out.println("Hotel Name: RidgeWood, Rate: " + sum3 + "$");
         }
+    }
 
-
-
+    public void cheapestBestRatedHotel()
+    {
+         if (sum1 == sum2 && lakeWoodRating < bridgeWoodRating)
+        {
+            System.out.println("Hotel Name: BridgeWood, Rating: " + bridgeWoodRating + " Rate: " + sum1 + "$");
+        }
+         else if(sum1 == sum2 && lakeWoodRating > bridgeWoodRating)
+         {
+             System.out.println("Hotel Name: LakeWood, Rating: " + lakeWoodRating + " Rate: " + sum2 + "$");
+         }
+        else if (sum1 == sum3 && lakeWoodRating < ridgeWoodRating)
+        {
+            System.out.println("Hotel Name: RidgeWood, Rating: "+ ridgeWoodRating + " Rate: " + sum3 + "$");
+        }
+         else if(sum1 == sum3 && lakeWoodRating > ridgeWoodRating)
+         {
+             System.out.println("Hotel Name: LakeWood, Rating: " + lakeWoodRating + " Rate: " + sum1 + "$");
+         }
+        else if (sum2 == sum3 && bridgeWoodRating < ridgeWoodRating)
+        {
+            System.out.println("Hotel Name: RidgeWood, Rating: " + ridgeWoodRating + " Rate: " + sum3 + "$");
+        }
+         else if (sum2 == sum3 && bridgeWoodRating > ridgeWoodRating)
+         {
+             System.out.println("Hotel Name: BridgeWood, Rating: " + bridgeWoodRating + " Rate: " + sum2 + "$");
+         }
 
 
     }
+
 }
