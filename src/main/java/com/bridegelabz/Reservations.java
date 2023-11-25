@@ -6,8 +6,6 @@ import java.time.LocalDate;
 public class Reservations {
 
     public void cheapestHotel() {
-       /* LocalDate startDate = LocalDate.parse("2020-09-10");
-        LocalDate endDate = LocalDate.parse("2020-09-11");*/
 
         LocalDate startDate = LocalDate.parse("2020-09-11");
         LocalDate endDate = LocalDate.parse("2020-09-12");

@@ -9,9 +9,9 @@ public class HotelReservationSystem {
     public static void main(String[] args) {
         System.out.println("============ Welcome to Hotel Reservation System ============");
 
-        Hotels lakewood = new Hotels("LakeWood", 110,90);
-        Hotels bridgewood = new Hotels("BridgeWood", 150,50);
-        Hotels ridgewood = new Hotels("RidgeWood", 220,150);
+        Hotels lakewood = new Hotels("LakeWood", 110,90,3);
+        Hotels bridgewood = new Hotels("BridgeWood", 150,50,4);
+        Hotels ridgewood = new Hotels("RidgeWood", 220,150,5);
 
         hotelList.add(lakewood);
         hotelList.add(bridgewood);
