@@ -16,7 +16,9 @@ public class Hotels {
         if (day.equals("MONDAY")||day.equals("TUESDAY")||day.equals("WEDNESDAY")||day.equals("THURSDAY")||day.equals("FRIDAY")) {
             return rateForRegularCustomerWeekDay;
         }
-        return 0;
+        else {
+            return rateForRegularCustomerWeekend;
+        }
     }
 
 
@@ -24,7 +26,7 @@ public class Hotels {
     public String toString() {
         return "Hotels {" +
                 "hotel='" + hotel + '\'' +
-                ", rateForRegularCustomer=" + rateForRegularCustomerWeekDay +
+                ", rateForRegularCustomerWeekday=" + rateForRegularCustomerWeekDay +
                 ", rateForRegularCustomerWeekend=" + rateForRegularCustomerWeekend +
                 '}';
     }
