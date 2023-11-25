@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HotelReservationSystem {
+   static List<Hotels> hotelList = new ArrayList<>();
+
     public static void main(String[] args) {
         System.out.println("============ Welcome to Hotel Reservation System ============");
 
-        List<Hotels> hotelList=new ArrayList<>();
-        Hotels lakewood=new Hotels("LakeWood",110);
-        Hotels bridgewood=new Hotels("LakeWood",160);
-        Hotels ridgewood=new Hotels("LakeWood",220);
+        Hotels lakewood = new Hotels("LakeWood", 110);
+        Hotels bridgewood = new Hotels("BridgeWood", 160);
+        Hotels ridgewood = new Hotels("RidgeWood", 220);
 
         hotelList.add(lakewood);
         hotelList.add(bridgewood);
@@ -18,8 +19,7 @@ public class HotelReservationSystem {
 
         System.out.println(hotelList);
 
-
-
-
+        Reservations reserve=new Reservations();
+        reserve.cheapeestHotel();
     }
 }
