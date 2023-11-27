@@ -2,8 +2,10 @@ package com.bridegelabz;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public class Reservations {
+
 
         LocalDate startDate = LocalDate.parse("2020-09-11");
         LocalDate endDate = LocalDate.parse("2020-09-12");
@@ -11,18 +13,24 @@ public class Reservations {
         DayOfWeek startDayOfReservation = startDate.getDayOfWeek();
         DayOfWeek endDayOfReservation = endDate.getDayOfWeek();
 
-        int sum1 = HotelReservationSystem.hotelList.get(0).calculateRateForRegularCustomer(startDayOfReservation.name()) +
-                HotelReservationSystem.hotelList.get(0).calculateRateForRegularCustomer(endDayOfReservation.name());
 
-        int sum2 = HotelReservationSystem.hotelList.get(1).calculateRateForRegularCustomer(startDayOfReservation.name()) +
-                HotelReservationSystem.hotelList.get(1).calculateRateForRegularCustomer(endDayOfReservation.name());
+        String checkIn = String.valueOf(startDayOfReservation);
+        String checkOut = String.valueOf(endDayOfReservation);
 
-        int sum3 = HotelReservationSystem.hotelList.get(2).calculateRateForRegularCustomer(startDayOfReservation.name()) +
-                HotelReservationSystem.hotelList.get(2).calculateRateForRegularCustomer(endDayOfReservation.name());
+
+        int sum1 = HotelReservationSystem.hotelList.get(0).calculateRateForCustomer(checkIn) +
+                HotelReservationSystem.hotelList.get(0).calculateRateForCustomer(checkOut);
+
+        int sum2 = HotelReservationSystem.hotelList.get(1).calculateRateForCustomer(checkIn) +
+                HotelReservationSystem.hotelList.get(1).calculateRateForCustomer(checkOut);
+
+        int sum3 = HotelReservationSystem.hotelList.get(2).calculateRateForCustomer(checkIn) +
+                HotelReservationSystem.hotelList.get(2).calculateRateForCustomer(checkOut);
 
         int lakeWoodRating = HotelReservationSystem.hotelList.get(0).ratings;
         int bridgeWoodRating = HotelReservationSystem.hotelList.get(1).ratings;
         int ridgeWoodRating = HotelReservationSystem.hotelList.get(2).ratings;
+
 
     public void cheapestHotel() {
         if (sum1 < sum2 && sum1 < sum3) {
@@ -66,6 +74,7 @@ public class Reservations {
          {
              System.out.println("Hotel Name: BridgeWood, Rating: " + bridgeWoodRating + " Rate: " + sum2 + "$");
          }
+
     }
 
     public void bestRatedHotel()
@@ -85,4 +94,33 @@ public class Reservations {
         }
     }
 
+    public void cheapestBestRatedHotelForRewardCustomer() {
+
+        int sum1 = HotelReservationSystem.hotelList.get(0).calculateRateForRewardCustomer(checkIn) +
+                HotelReservationSystem.hotelList.get(0).calculateRateForRewardCustomer(checkOut);
+
+        int sum2 = HotelReservationSystem.hotelList.get(1).calculateRateForRewardCustomer(checkIn) +
+                HotelReservationSystem.hotelList.get(1).calculateRateForRewardCustomer(checkOut);
+
+        int sum3 = HotelReservationSystem.hotelList.get(2).calculateRateForRewardCustomer(checkIn) +
+                HotelReservationSystem.hotelList.get(2).calculateRateForRewardCustomer(checkOut);
+
+        int minRate = sum1;
+
+        if (sum2 < minRate) {
+            minRate = sum2;
+        }
+
+        if (sum3 < minRate) {
+            minRate = sum3;
+        }
+
+        if (sum1 == minRate && lakeWoodRating >= bridgeWoodRating && lakeWoodRating >= ridgeWoodRating) {
+            System.out.println("Hotel Name: LakeWood, Rating: " + lakeWoodRating + " Rate: " + minRate + "$");
+        } else if (sum2 == minRate && bridgeWoodRating >= lakeWoodRating && bridgeWoodRating >= ridgeWoodRating) {
+            System.out.println("Hotel Name: BridgeWood, Rating: " + bridgeWoodRating + " Rate: " + minRate + "$");
+        } else if (sum3 == minRate && ridgeWoodRating >= lakeWoodRating && ridgeWoodRating >= bridgeWoodRating) {
+            System.out.println("Hotel Name: RidgeWood, Rating: " + ridgeWoodRating + " Rate: " + minRate + "$");
+        }
+    }
 }

@@ -24,20 +24,37 @@ public class HotelReservationSystem {
 
         Reservations reserve = new Reservations();
 
+        System.out.println("Enter type of customer : \n1) Regular Customer\n2) Reward Customer");
+        int typeOfCustomer=sc.nextInt();
+
         System.out.println("Enter the Number to choose best package");
 
-        System.out.println("1) Cheapest Hotel\n2) Cheapest Best Rated Hotel\n3) Best Rated Hotel");
-        int reservationList = sc.nextInt();
-        switch (reservationList) {
-            case 1:
-                reserve.cheapestHotel();
-                break;
-            case 2:
-                reserve.cheapestBestRatedHotel();
-                break;
-            case 3:
-                reserve.bestRatedHotel();
-                break;
+        try{
+        if(typeOfCustomer == 1) {
+            System.out.println("1) Cheapest Hotel\n2) Cheapest Best Rated Hotel\n3) Best Rated Hotel");
+            int reservationList = sc.nextInt();
+            switch (reservationList) {
+                case 1:
+                    reserve.cheapestHotel();
+                    break;
+                case 2:
+                    reserve.cheapestBestRatedHotel();
+                    break;
+                case 3:
+                    reserve.bestRatedHotel();
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
+                    break;
+            }
+        } else if (typeOfCustomer == 2) {
+            System.out.println("1) Cheapest Best Rated Hotel");
+            reserve.cheapestBestRatedHotelForRewardCustomer();
+        } else {
+            System.out.println("Invalid customer type.");
+        }
+        } catch (Exception e) {
+            System.out.println("An error occurred: " + e.getMessage());
         }
     }
 }
