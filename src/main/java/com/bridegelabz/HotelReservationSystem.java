@@ -1,6 +1,7 @@
 package com.bridegelabz;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -50,10 +51,15 @@ public class HotelReservationSystem {
         } else if (typeOfCustomer == 2) {
             System.out.println("1) Cheapest Best Rated Hotel");
             reserve.cheapestBestRatedHotelForRewardCustomer();
-        } else {
+        }
+        else {
             System.out.println("Invalid customer type.");
         }
-        } catch (Exception e) {
+        }
+        catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please enter a valid number.");
+        }
+        catch (Exception e) {
             System.out.println("An error occurred: " + e.getMessage());
         }
     }

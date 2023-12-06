@@ -1,7 +1,7 @@
 package com.bridegelabz;
 
 public class Hotels {
-    private final String hotel;
+     final String hotel;
     private final int rateForRegularCustomerWeekDay;
     private final int rateForRegularCustomerWeekend;
     private final int rateForRewardCustomerWeekDay;

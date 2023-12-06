@@ -2,10 +2,10 @@ package com.bridegelabz;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class Reservations {
-
 
         LocalDate startDate = LocalDate.parse("2020-09-11");
         LocalDate endDate = LocalDate.parse("2020-09-12");
@@ -33,6 +33,7 @@ public class Reservations {
 
 
     public void cheapestHotel() {
+
         if (sum1 < sum2 && sum1 < sum3) {
             System.out.println("Hotel Name: LakeWood, Rate: " + sum1 + "$");
         } else if (sum2 < sum1 && sum2 < sum3) {
@@ -50,32 +51,22 @@ public class Reservations {
 
     public void cheapestBestRatedHotel()
     {
-         if (sum1 == sum2 && lakeWoodRating < bridgeWoodRating)
-        {
-            System.out.println("Hotel Name: BridgeWood, Rating: " + bridgeWoodRating + " Rate: " + sum1 + "$");
-        }
-         else if(sum1 == sum2 && lakeWoodRating > bridgeWoodRating)
-         {
-             System.out.println("Hotel Name: LakeWood, Rating: " + lakeWoodRating + " Rate: " + sum2 + "$");
-         }
-        else if (sum1 == sum3 && lakeWoodRating < ridgeWoodRating)
-        {
-            System.out.println("Hotel Name: RidgeWood, Rating: "+ ridgeWoodRating + " Rate: " + sum3 + "$");
-        }
-         else if(sum1 == sum3 && lakeWoodRating > ridgeWoodRating)
-         {
-             System.out.println("Hotel Name: LakeWood, Rating: " + lakeWoodRating + " Rate: " + sum1 + "$");
-         }
-        else if (sum2 == sum3 && bridgeWoodRating < ridgeWoodRating)
-        {
-            System.out.println("Hotel Name: RidgeWood, Rating: " + ridgeWoodRating + " Rate: " + sum3 + "$");
-        }
-         else if (sum2 == sum3 && bridgeWoodRating > ridgeWoodRating)
-         {
-             System.out.println("Hotel Name: BridgeWood, Rating: " + bridgeWoodRating + " Rate: " + sum2 + "$");
-         }
 
-    }
+        int minRate = HotelReservationSystem.hotelList.stream()
+                .mapToInt(hotel -> hotel.calculateRateForCustomer(checkIn) + hotel.calculateRateForCustomer(checkOut))
+                .min()
+                .orElseThrow();
+
+        Hotels bestHotel = HotelReservationSystem.hotelList.stream()
+                .filter(hotel -> hotel.calculateRateForCustomer(checkIn) + hotel.calculateRateForCustomer(checkOut) == minRate)
+                .max(Comparator.comparingInt(hotel -> hotel.ratings))
+                .orElseThrow();
+
+        System.out.println("Hotel Name: " + bestHotel.hotel + ", Rating: " + bestHotel.ratings + ", Rate: " + minRate + "$");
+
+
+
+}
 
     public void bestRatedHotel()
     {
@@ -96,31 +87,17 @@ public class Reservations {
 
     public void cheapestBestRatedHotelForRewardCustomer() {
 
-        int sum1 = HotelReservationSystem.hotelList.get(0).calculateRateForRewardCustomer(checkIn) +
-                HotelReservationSystem.hotelList.get(0).calculateRateForRewardCustomer(checkOut);
+            int minRate = HotelReservationSystem.hotelList.stream()
+                    .mapToInt(hotel -> hotel.calculateRateForRewardCustomer(checkIn) + hotel.calculateRateForRewardCustomer(checkOut))
+                    .min()
+                    .orElseThrow();
 
-        int sum2 = HotelReservationSystem.hotelList.get(1).calculateRateForRewardCustomer(checkIn) +
-                HotelReservationSystem.hotelList.get(1).calculateRateForRewardCustomer(checkOut);
+            Hotels bestHotel = HotelReservationSystem.hotelList.stream()
+                    .filter(hotel -> hotel.calculateRateForRewardCustomer(checkIn) + hotel.calculateRateForRewardCustomer(checkOut) == minRate)
+                    .max(Comparator.comparingInt(hotel -> hotel.ratings))
+                    .orElseThrow();
 
-        int sum3 = HotelReservationSystem.hotelList.get(2).calculateRateForRewardCustomer(checkIn) +
-                HotelReservationSystem.hotelList.get(2).calculateRateForRewardCustomer(checkOut);
+            System.out.println("Hotel Name: " + bestHotel.hotel + ", Rating: " + bestHotel.ratings + ", Rate: " + minRate + "$");
 
-        int minRate = sum1;
-
-        if (sum2 < minRate) {
-            minRate = sum2;
-        }
-
-        if (sum3 < minRate) {
-            minRate = sum3;
-        }
-
-        if (sum1 == minRate && lakeWoodRating >= bridgeWoodRating && lakeWoodRating >= ridgeWoodRating) {
-            System.out.println("Hotel Name: LakeWood, Rating: " + lakeWoodRating + " Rate: " + minRate + "$");
-        } else if (sum2 == minRate && bridgeWoodRating >= lakeWoodRating && bridgeWoodRating >= ridgeWoodRating) {
-            System.out.println("Hotel Name: BridgeWood, Rating: " + bridgeWoodRating + " Rate: " + minRate + "$");
-        } else if (sum3 == minRate && ridgeWoodRating >= lakeWoodRating && ridgeWoodRating >= bridgeWoodRating) {
-            System.out.println("Hotel Name: RidgeWood, Rating: " + ridgeWoodRating + " Rate: " + minRate + "$");
-        }
     }
 }
